@@ -11,6 +11,13 @@ import {
   modalInput,
   modalSubmit,
   modalCancel,
+  taskModalOverlay,
+  taskModal,
+  taskTitleInput,
+  taskDueDateInput,
+  taskPrioritySelect,
+  taskModalSubmit,
+  taskModalCancel,
 } from "./layout";
 
 let projects = [];
@@ -42,18 +49,6 @@ modalCancel.addEventListener("click", () => {
   modalOverlay.style.display = "none";
 });
 
-addTaskButton.addEventListener("click", () => {
-  if (!currentProject) return alert("Select a project first");
-
-  const title = prompt("Task name?");
-  const dueDate = prompt("Due date?");
-  const priority = prompt("Priority? high medium low");
-  if (!title || !dueDate || !priority) return;
-
-  const task = new Task(title, dueDate, priority);
-  currentProject.addTask(task);
-  renderTasks();
-});
 
 // Render Functions
 function renderProjects() {
@@ -110,3 +105,48 @@ function getPriorityColor(priority) {
   if (priority === "medium") return "orange";
   return "green";
 }
+
+
+
+
+
+
+
+
+// Show task modal when clicking add task
+addTaskButton.addEventListener("click", () => {
+  if (!currentProject) return alert("Select a project first");
+
+  // Clear previous inputs
+  taskTitleInput.value = "";
+  taskDueDateInput.value = "";
+  taskPrioritySelect.value = "low";
+
+  // Show the modal
+  taskModalOverlay.style.display = "flex";
+  taskTitleInput.focus();
+});
+
+// Submit new task from modal
+taskModalSubmit.addEventListener("click", () => {
+  const title = taskTitleInput.value.trim();
+  const dueDate = taskDueDateInput.value;
+  const priority = taskPrioritySelect.value;
+
+  if (!title || !dueDate || !priority) {
+    alert("Please fill out all fields");
+    return;
+  }
+
+  const capitaliseTitle = capitalizeFirstLetter(title) // varible to capitalise first letter of title. 
+  const task = new Task(capitaliseTitle, dueDate, priority);
+  currentProject.addTask(task);
+  renderTasks();
+
+  taskModalOverlay.style.display = "none";
+});
+
+// Cancel task modal
+taskModalCancel.addEventListener("click", () => {
+  taskModalOverlay.style.display = "none";
+});
