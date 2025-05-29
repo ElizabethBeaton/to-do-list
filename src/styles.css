@@ -1,6 +1,6 @@
 /* styles.css */
 body {
-  background-color: palevioletred;
+  background-color: rgb(158, 206, 239);
 }
 
 /* src/style.css */
@@ -11,6 +11,7 @@ body {
 }
 .sidebar {
   width: 250px;
+  height: 100vh;
   padding: 1rem;
   background: #f0f0f0;
   border-right: 1px solid #ccc;
@@ -26,5 +27,15 @@ table {
 }
 th, td {
   padding: 0.5rem;
-  border: 1px solid #ccc;
+  border: 1px solid #1c3df4;
+  border-radius: 4px;
+}
+
+.addProjectButton {
+    background-color: rgb(193, 207, 242);
+    border: none;
+    margin-top: 10px;
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 18px;
 }
