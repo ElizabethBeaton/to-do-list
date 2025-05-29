@@ -96,3 +96,81 @@ style.textContent = `
 }
 `;
 document.head.appendChild(style);
+
+
+
+
+
+
+
+
+
+// Task Modal
+export const taskModalOverlay = document.createElement("div");
+taskModalOverlay.className = "modal-overlay";
+
+export const taskModal = document.createElement("div");
+taskModal.className = "modal";
+taskModal.style.backgroundColor = "#ffffff";
+taskModal.style.width = "300px";
+
+const taskModalTitle = document.createElement("h3");
+taskModalTitle.textContent = "Add New Task";
+
+export const taskTitleInput = document.createElement("input");
+taskTitleInput.type = "text";
+taskTitleInput.placeholder = "Task Title";
+taskTitleInput.style.margin = "0.5rem auto";
+taskTitleInput.style.display = "block";
+taskTitleInput.style.padding = "0.5rem";
+taskTitleInput.style.fontSize = "1rem";
+taskTitleInput.style.width = "90%";
+taskTitleInput.style.border = "1px solid #ccc";
+taskTitleInput.style.borderRadius = "4px";
+
+export const taskDueDateInput = document.createElement("input");
+taskDueDateInput.type = "date";
+taskDueDateInput.style.margin = "0.5rem auto";
+taskDueDateInput.style.display = "block";
+taskDueDateInput.style.padding = "0.5rem";
+taskDueDateInput.style.fontSize = "1rem";
+taskDueDateInput.style.width = "90%";
+taskDueDateInput.style.border = "1px solid #ccc";
+taskDueDateInput.style.borderRadius = "4px";
+
+export const taskPrioritySelect = document.createElement("select");
+taskPrioritySelect.style.margin = "0.5rem auto";
+taskPrioritySelect.style.display = "block";
+taskPrioritySelect.style.padding = "0.5rem";
+taskPrioritySelect.style.fontSize = "1rem";
+taskPrioritySelect.style.width = "95%";
+taskPrioritySelect.style.border = "1px solid #ccc";
+taskPrioritySelect.style.borderRadius = "4px";
+
+["Low", "Medium", "High"].forEach(level => {
+  const option = document.createElement("option");
+  option.value = level.toLowerCase();
+  option.textContent = level;
+  taskPrioritySelect.appendChild(option);
+});
+
+export const taskModalSubmit = document.createElement("button");
+taskModalSubmit.textContent = "Add Task";
+taskModalSubmit.style.margin = "10px 5px";
+
+export const taskModalCancel = document.createElement("button");
+taskModalCancel.textContent = "Cancel";
+taskModalCancel.style.margin = "10px 5px";
+
+taskModal.append(
+  taskModalTitle,
+  taskTitleInput,
+  taskDueDateInput,
+  taskPrioritySelect,
+  taskModalSubmit,
+  taskModalCancel
+);
+
+taskModalOverlay.appendChild(taskModal);
+document.body.appendChild(taskModalOverlay);
+taskModalOverlay.style.display = "none";
